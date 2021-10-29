@@ -1,0 +1,215 @@
+*, *::after, *::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+html, body {
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul li {
+  list-style: none;
+}
+
+.main-content {
+  background-color: #F7F7F7;
+  padding-bottom: 100px;
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    padding-bottom: 30px;
+  }
+}
+
+.search-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.search-area p {
+  color: #818A91;
+}
+
+@media (max-width: 768px) {
+  .search-area {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.form-select {
+  width: 27.5%;
+  min-height: 38px;
+  text-indent: 0.5rem;
+  color: #818A91;
+  font-size: 1rem;
+  border: 1px solid #CED4DA;
+  border-radius: 5px;
+  margin-right: 2.5%;
+}
+
+@media (max-width: 768px) {
+  .regionSearch {
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 80%;
+  }
+}
+
+.ticketCard-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.ticketCard {
+  width: 31.3333%;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 3px 6px #00000029;
+          box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #DEE2E6;
+  border-radius: 5px;
+  margin-bottom: 38px;
+  margin-right: 2%;
+}
+
+@media (max-width: 768px) {
+  .ticketCard {
+    width: 46%;
+    margin: 0 2% 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ticketCard {
+    width: 90%;
+    margin: 0 5% 30px;
+  }
+}
+
+.ticketCard-img {
+  position: relative;
+}
+
+.ticketCard-img a {
+  display: block;
+  overflow: hidden;
+}
+
+.ticketCard-img img {
+  width: 100%;
+  height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.ticketCard-img img:hover {
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+}
+
+.ticketCard-region, .ticketCard-rank {
+  position: absolute;
+  border-radius: 0 5px 5px 0px;
+  color: #FFF;
+  text-align: center;
+}
+
+.ticketCard-region {
+  top: -13px;
+  left: 0;
+  font-size: 1.25rem;
+  background-color: #64C3BF;
+  padding: 12px 20px;
+}
+
+.ticketCard-rank {
+  bottom: -16px;
+  left: 0;
+  background-color: #00807E;
+  padding: 5px 8px;
+  min-width: 40px;
+}
+
+.ticketCard-content {
+  padding: 20px;
+  height: calc(100% - 180px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ticketCard-name {
+  display: block;
+  text-decoration: none;
+  color: #00807E;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #00807E;
+  margin-bottom: 20px;
+}
+
+.ticketCard-name:hover {
+  color: #64C3BF;
+}
+
+.ticketCard-description {
+  color: #818A91;
+  margin-bottom: 32px;
+}
+
+.ticketCard-info {
+  color: #00807E;
+  font-family: 'Roboto', sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ticketCard-num {
+  font-weight: bold;
+}
+
+
+
+.ticketCard-price span {
+  font-size: 1rem;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="sass/all.css">
+   <link rel="stylesheet" href="dist/css/icomoon.css">
+   <link rel="stylesheet" href="jquery-3.6.0.min.js.css">
+  <style>
+    .avator {
+      width: 45px;
+      height: 45px;
+      border-radius: 100px;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #999;
+    }
+    .chatroom {
+      height: 90vh;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/archive/b/b7/20100301162258!Unico_Anello.png" alt="" width="60px" height="60px"></a>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item btn">
+          <a class="nav-link active" aria-current="page" href="../index.html">首頁</a>
+        </li>
+        <li class="nav-item btn">
+          <a class="nav-link" href="realtime.html">即時聊天</a>
+        </li>
+        <li class="nav-item btn">
+          <a class="nav-link" href="../contact.html">與我聯絡</a>
+        </li>
+        <li class="nav-item btn">
+          <a class="nav-link" href="../product.html">產品列表</a>
+        </li>
+        <li class="nav-item btn">
+          <a class="nav-link" href="../attraction.html">民宿/旅館</a>
+        </li>
+      </ul>
+         <ul class="d-flex flex-sm-column flex-lg-row">
+      <div><button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">登入</button></div>
+      <div><button type="button" class="btn btn-outline-primary m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop-2">註冊</button></div>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <p class="text-center"></p>
+  <div id="app" class="container my-3">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card rounded-3 chatroom">
+          <div class="card-body pt-0">
+            <div class="input-group py-3 sticky-top bg-white">
+              <input type="text" class="form-control" v-model="message"
+              :disabled="!username"
+              @keyup.enter="addMessage">
+              <button class="btn btn-outline-secondary" type="button"
+              :disabled="!username" @click="addMessage">送出</button>
+            </div>
+
+            <div class="message-block">
+              <div class="row gx-2 mb-3" v-for="(item, key) in chatroom"
+              :key="key"
+              :class="{ 'text-end flex-row-reverse': item.username === username }">
+                <div class="col-1 d-flex justify-content-center">
+                  <div class="avator mt-1">
+                    {{ item.username.slice(0, 1) }}
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div>
+                    <strong>{{ item.username }}</strong>
+                    <small class="text-muted ms-2">
+                      {{ new Date(item.time).toLocaleDateString() }}
+                      {{ new Date(item.time).toLocaleTimeString() }}</small>
+                  </div>
+                  <div class="message-content p-2 mt-2 rounded-3"
+                  :class="{ 'bg-info text-white': item.username === username,
+                  'bg-light': item.username !== username
+                  }">
+                    <p class="mb-0">{{ item.message }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="username" class="form-label">輸入使用者名稱</label>
+              <input id="username" type="text" class="form-control"
+              v-model="tempUsername"
+              :disabled="username.length"
+              autofocus
+              @keyup.enter="addUsername">
+              <small class="form-text text-muted">請輸入個人姓名開始使用聊天室</small>
+            </div>
+            <button type="button" class="btn btn-info" @click="addUsername"
+            :disabled="username.length">
+              開始使用
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-app.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-auth.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.9.0/firebase-database.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.1.4/vue.global.min.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+     apiKey: "AIzaSyAFEwlHnsXf2jhg4QsGUx2zfynEOPUXM6k",
+    authDomain: "conservation-347e8.firebaseapp.com",
+    projectId: "conservation-347e8",
+    storageBucket: "conservation-347e8.appspot.com",
+    messagingSenderId: "698621817589",
+    appId: "1:698621817589:web:554a1cbde4fe5f6204cbbc",
+    measurementId: "G-H7MGHR7LNG"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <script>
+    const database = firebase.database();
+    const chatroomRef = database.ref('chatroom');
+
+    const app = Vue.createApp({
+      data() {
+        return {
+          chatroom: [],
+          tempUsername: '',
+          username: '',
+          message: '',
+        }
+      },
+      methods: {
+        addUsername() {
+          if (this.tempUsername.trim()) {
+            this.username = this.tempUsername;
+          } else {
+            alert('請輸入正確姓名')
+          }
+        },
+        addMessage() {
+          if (!this.message.trim()) {
+            return
+          }
+          const key = chatroomRef.push().key;
+          console.log(key);
+          chatroomRef.child(key).set({
+            username: this.username,
+            message: this.message,
+            time: new Date().getTime(),
+            key,
+          });
+          this.message = '';
+        }
+      },
+      mounted() {
+        chatroomRef.on('value', (snapshot) => {
+          const data = snapshot.val();
+          this.chatroom = data;
+          console.log(data);
+        })
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+body {
+  background-image: url("image/volcano.jpg");
+  background-position: center; }
+
+.carousel .carousel-item img {
+  max-height: 300px;
+  object-fit: cover; }
+
+/*# sourceMappingURL=index.css.map */

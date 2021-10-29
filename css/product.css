@@ -1,0 +1,37 @@
+.breadcrumb{
+    background-color: whitesmoke;
+  border-radius: 5px;
+}
+.card{
+    position: relative;
+}
+.tag{
+  position: absolute;
+  background-color: #3F5D45;
+  color:#EAF0ED;
+  writing-mode: vertical-lr;
+  left:20px;
+  top: 0px;
+  letter-spacing: 5px;
+  padding: 10px;
+  z-index: 1;
+}
+.cart{
+  width: 100%;
+  text-decoration: none;
+  display: block;
+  line-height: 65px;
+  font-size: 24px;
+  text-align: center;
+  background: #EAF0ED;
+}
+.card-title{
+  border-bottom: 1px solid gray;
+}
+.price{
+  border-bottom: 1px solid grey;
+}
+.list-group-item:hover{
+  background-color: #0dcaf0;
+  transform: translateY(1px);
+}

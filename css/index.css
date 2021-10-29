@@ -1,0 +1,44 @@
+.furniture-compare {
+  padding: 50px 0 60px 0;
+}
+
+@media (max-width: 767px) {
+  .furniture-compare {
+    padding: 50px 15px 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .overflowWrap {
+    overflow-x: scroll;
+  }
+}
+.compare-table {
+  width: 65%;
+  margin: 0 auto;
+}
+
+.compare-table th, .compare-table td {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.compare-table th {
+  font-size: 1.25rem;
+}
+
+.compare-table tr {
+  border-bottom: 1px solid #B9B9B9;
+}
+
+.compare-table tr td:first-child {
+  text-align: left;
+  font-size: 1.25rem;
+}
+
+.compare-table .material-icons {
+  color: #6A33FF;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
